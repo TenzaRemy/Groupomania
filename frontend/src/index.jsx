@@ -2,6 +2,8 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom"; // React router v6 app
 import Home from './pages/Home'
+import GlobalStyle from './utils/style/GlobalStyle'
+
 
 const container = document.getElementById('root')
 const root = createRoot(container);
@@ -9,9 +11,10 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Router>
-      <Routes>
-      <Route exact path="/" element={<Home/>}/>
-      </Routes>
+      <GlobalStyle />
+        <Routes>
+          <Route exact path="/" element={<Home/>}/>
+        </Routes>
     </Router>
   </React.StrictMode>
 );
