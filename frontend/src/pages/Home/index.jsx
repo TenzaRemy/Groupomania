@@ -1,10 +1,15 @@
 
-function Home() {
+
+function Form() {
     return (
-      <div>
-        <h1> Page d'accueil 🏠</h1>
-      </div>
+      <form>
+        <h1>Connecter vous !</h1>
+          <input type="text" placeholder="Email" name="email"/>
+          <input type="password" placeholder="Mot de Passe" name="password"/>
+          <button type="submit">Se connecter</button>
+      </form>
     )
   }
+
   
-export default Home
+export default Form

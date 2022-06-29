@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom"; // Reac
 import Home from './pages/Home'
 import GlobalStyle from './utils/style/GlobalStyle'
 import Error from './components/Error'
+import Header from './components/Header';
 
 
 const container = document.getElementById('root')
@@ -13,6 +14,7 @@ root.render(
   <React.StrictMode>
     <Router>
       <GlobalStyle />
+      <Header />
         <Routes>
           <Route exact path="/" element={<Home/>}/>
           <Route path="*" element={<Error/>}/>
