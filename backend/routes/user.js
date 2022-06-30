@@ -5,6 +5,6 @@ const userCtrl = require('../controllers/user');// Importation des controllers U
 
 router.post('/signup', userCtrl.signup);
 router.post('/login', userCtrl.login);
-router.post('logout', userCtrl.logout);
+// router.post('logout', userCtrl.logout);
 
 module.exports = router;

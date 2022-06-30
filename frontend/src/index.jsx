@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import GlobalStyle from './utils/style/GlobalStyle'
 import Error from './components/Error'
 import Header from './components/Header';
+import SignUp from './pages/SignUp'
 
 
 const container = document.getElementById('root')
@@ -18,6 +19,7 @@ root.render(
         <Routes>
           <Route exact path="/" element={<Home/>}/>
           <Route path="*" element={<Error/>}/>
+          <Route path="/SignUp" element={<SignUp/>}/>
         </Routes>
     </Router>
   </React.StrictMode>

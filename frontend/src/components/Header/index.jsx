@@ -34,8 +34,8 @@ function Header() {
       <NavLink>
         <FormLogo src={Logo} alt="Logo de l'entreprise Groupomania" />
         <ListLog>
-        <Link to="/errr"><List>Se connecter</List></Link>
-        <Link to="/errr"><List>S'inscrire</List></Link>
+        <Link to="/"><List>Se connecter</List></Link>
+        <Link to="/SignUp"><List>S'inscrire</List></Link>
         </ListLog>
       </NavLink> 
     )

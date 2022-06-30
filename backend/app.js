@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const path = require('path');
 
-// const userRoutes = require('./routes/user') ;
+const userRoutes = require('./routes/user') ;
 
 const MongoDB = process.env.MongoDB_Connection
 
@@ -27,6 +27,6 @@ app.use(express.json());
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
-// app.use('/api/auth', userRoutes); 
+app.use('/api/auth', userRoutes); 
 
 module.exports = app

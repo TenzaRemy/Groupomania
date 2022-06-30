@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import colors from '../../utils/style/colors';
-import { Link } from 'react-router-dom'
 
 const Formulaire = styled.div`
   border-radius: 20px;
@@ -45,14 +44,11 @@ const Log = styled.button`
   border-radius: 20px;
   background: rgb(78,81,102);
   background: linear-gradient(160deg, rgba(78,81,102,1) 66%, rgba(255,215,215,1) 120%); 
-  width: 33%;
+  width: 20%;
   padding: 10px;
-  margin: 40px 0 0 0;
+  margin: 40px 0 0 265px;;
+ 
   box-shadow: -1px 2px 2px 3px lightgray;
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  font-size: 18px;
 `
 
 function Form() {
@@ -61,13 +57,14 @@ function Form() {
     return (
       <Formulaire>
       <BlocForm method='post'>
-        <FormTitle>Connecter vous !</FormTitle>
+        <FormTitle>Inscivez vous dès maintenant !</FormTitle>
+          <FormValue htmlFor="Pseuso">Voter Pseudo</FormValue>
+          <FormInput type="text" placeholder="Pseudonyme" name="pseudo" required/>
           <FormValue htmlFor="email">Email</FormValue>
           <FormInput type="text" placeholder="Email" name="email" required/>
           <FormValue htmlFor="password">Mot de Passe</FormValue>
           <FormInput type={passwordIsVisible ? 'text' : 'password'} placeholder="Mot de Passe" name="password" required/>
           <Show type="button" onClick={() => setPasswordIsVisible(!passwordIsVisible)}>Montrer</Show>
-          <p>Vous n'avez pas de comptes ? <Link to="/SignUp">Inscrivez vous</Link></p>
           <Log type="submit">Se connecter</Log>
       </BlocForm>
       </Formulaire>
