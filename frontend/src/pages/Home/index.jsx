@@ -11,7 +11,7 @@ const Formulaire = styled.div`
   padding: 10px 10px 0;
   width: 50%;
   position: absolute;
-		top: 30%;
+		top: 27%;
 		left: 25%;
     background-color: ${colors.secondary};
 `

@@ -26,6 +26,7 @@ const List = styled.li`
   border-radius: 20px;
   background-color: ${colors.primary};
   color: black;
+  box-shadow: 1px 1px 1px 1px black;
 `
 
 
