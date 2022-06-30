@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import colors from '../../utils/style/colors';
 import { Link } from 'react-router-dom'
 
+
 const Formulaire = styled.div`
   border-radius: 20px;
   border: 2px solid ${colors.tertiary};
@@ -12,12 +13,15 @@ const Formulaire = styled.div`
   position: absolute;
 		top: 30%;
 		left: 25%;
+    background-color: ${colors.secondary};
 `
 
 const BlocForm = styled.form`
   display: flex;
   flex-direction: column;
   padding: 10px;
+  align-items: center;
+  justify-content: center;
   `
 
 const FormTitle = styled.h1`
@@ -27,18 +31,21 @@ const FormTitle = styled.h1`
 const FormInput =  styled.input`
   padding: 5px;
   margin: 10px 0 15px 0;
-  width: 297px;
+  width: 250px;
+  border-radius: 10px;
+  background-color: #f5f5f5;
 `
 
 const Show = styled.button`
   background-color: ${colors.secondary};
-  height: 26px;
+  height: 25px;
   width: 65px;
-  margin: -43px 0 0 244px;
+  margin: -43px 0 0 193px;
+  border-radius: 10px;
 `
 
 const FormValue = styled.label`
-  width:
+  font-weight: 600;
 `
 
 const Log = styled.button`
@@ -53,21 +60,23 @@ const Log = styled.button`
   justify-content: center;
   align-self: center;
   font-size: 18px;
+  font-weight: 600;
 `
 
 function Form() {
+
   const [passwordIsVisible, setPasswordIsVisible] = useState(false);
 
     return (
       <Formulaire>
       <BlocForm method='post'>
-        <FormTitle>Connecter vous !</FormTitle>
-          <FormValue htmlFor="email">Email</FormValue>
+        <FormTitle>Connectez vous !</FormTitle>
+          <FormValue htmlFor="email">- Email -</FormValue>
           <FormInput type="text" placeholder="Email" name="email" required/>
-          <FormValue htmlFor="password">Mot de Passe</FormValue>
+          <FormValue htmlFor="password">- Mot de Passe -</FormValue>
           <FormInput type={passwordIsVisible ? 'text' : 'password'} placeholder="Mot de Passe" name="password" required/>
           <Show type="button" onClick={() => setPasswordIsVisible(!passwordIsVisible)}>Montrer</Show>
-          <p>Vous n'avez pas de comptes ? <Link to="/SignUp">Inscrivez vous</Link></p>
+          <p>Vous n'avez pas de compte ? <Link to="/SignUp">Inscrivez vous</Link></p>
           <Log type="submit">Se connecter</Log>
       </BlocForm>
       </Formulaire>
