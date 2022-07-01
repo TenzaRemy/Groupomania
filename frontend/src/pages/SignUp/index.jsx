@@ -63,17 +63,64 @@ const Log = styled.button`
 
 function Form() {
   const [passwordIsVisible, setPasswordIsVisible] = useState(false);
+  
+  const [userInput, setUserInput] = useState({
+    pseudo:'',
+    email:'',
+    password:'',    
+  });
 
+  const handlePseudoChange = (event) => {
+    setUserInput({...userInput, pseudo: event.target.value });
+  }
+
+  const handleEmailChange = (event) => {
+    setUserInput({...userInput, email: event.target.value });
+  }
+
+  const handlePasswordChange = (event) => {
+    setUserInput({...userInput, password: event.target.value });
+  }
+
+  const formSubmitHandler = (event) => {
+    event.preventDefault();
+    console.log(userInput);
+
+  fetch('http://localhost:3000/api/auth/signup', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userInput),
+  })
+  
+  .then(function (res) {
+    if (res.status === 404) {
+      alert(
+        'La création de compte à échouée, veuillez réessayer ultérieurement..'
+      )
+    } else {
+      alert(
+        'Compte créé avec succès ! Vous pouvez maintenant vous connecter :)'
+      )
+    }
+  })
+
+  .catch(function (err) {
+    console.log(err)
+  })
+}
     return (
-      <Formulaire>
-      <BlocForm method='post'>
+      <Formulaire onSubmit={formSubmitHandler}>
+      <BlocForm>
         <FormTitle>Inscivez vous dès maintenant !</FormTitle>
           <FormValue htmlFor="Pseuso">- Pseudo -</FormValue>
-          <FormInput type="text" placeholder="Votre pseudo" name="pseudo" required/>
+          <FormInput type="text" placeholder="Votre pseudo" onChange={handlePseudoChange} required/>
           <FormValue htmlFor="email">- Email -</FormValue>
-          <FormInput type="text" placeholder="Email" name="email" required/>
+          <FormInput type="text" placeholder="Email"  onChange={handleEmailChange} required/>
           <FormValue htmlFor="password">- Mot de Passe -</FormValue>
-          <FormInput type={passwordIsVisible ? 'text' : 'password'} placeholder="Mot de Passe" name="password" required/>
+          <FormInput type={passwordIsVisible ? 'text' : 'password'} placeholder="Mot de Passe" onChange={handlePasswordChange} required/>
           <Show type="button" onClick={() => setPasswordIsVisible(!passwordIsVisible)}>Montrer</Show>
           <Log type="submit">S'inscrire</Log>
       </BlocForm>

@@ -69,12 +69,12 @@ function Form() {
 
     return (
       <Formulaire>
-      <BlocForm method='post'>
+      <BlocForm>
         <FormTitle>Connectez vous !</FormTitle>
           <FormValue htmlFor="email">- Email -</FormValue>
-          <FormInput type="text" placeholder="Email" name="email" required/>
+          <FormInput type="text" placeholder="Email" id="email" name="email" required/>
           <FormValue htmlFor="password">- Mot de Passe -</FormValue>
-          <FormInput type={passwordIsVisible ? 'text' : 'password'} placeholder="Mot de Passe" name="password" required/>
+          <FormInput type={passwordIsVisible ? 'text' : 'password'} placeholder="Mot de Passe" id="password" name="password" required/>
           <Show type="button" onClick={() => setPasswordIsVisible(!passwordIsVisible)}>Montrer</Show>
           <p>Vous n'avez pas de compte ? <Link to="/SignUp">Inscrivez vous</Link></p>
           <Log type="submit">Se connecter</Log>
