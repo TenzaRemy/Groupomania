@@ -86,7 +86,7 @@ function Form() {
     event.preventDefault();
     console.log(userInput);
 
-  fetch('http://localhost:3000/api/auth/signup', {
+  fetch('http://localhost:5000/api/auth/signup', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -98,15 +98,14 @@ function Form() {
   .then(function (res) {
     if (res.status === 404) {
       alert(
-        'La création de compte à échouée, veuillez réessayer ultérieurement..'
+        'La création de compte à échouée, veuillez réessayer ultérieurement ou contacter les responsables.'
       )
     } else {
       alert(
-        'Compte créé avec succès ! Vous pouvez maintenant vous connecter :)'
+        'Création du compte avec succès ! Vous pouvez dès à présent vous connecter '
       )
     }
   })
-
   .catch(function (err) {
     console.log(err)
   })
