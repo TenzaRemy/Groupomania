@@ -67,17 +67,59 @@ function Form() {
 
   const [passwordIsVisible, setPasswordIsVisible] = useState(false);
 
+  
+  const [userLogin, setUserLogin] = useState({
+    email:'',
+    password:'',    
+  });
+
+  const handleEmailChange = (event) => {
+    setUserLogin({...userLogin, email: event.target.value });
+  }
+
+  const handlePasswordChange = (event) => {
+    setUserLogin({...userLogin, password: event.target.value });
+  }
+
+  const formSubmitHandler = (event) => {
+    event.preventDefault();
+    console.log(userLogin);
+
+  fetch('http://localhost:5000/api/auth/login', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userLogin),
+  })
+  .then(function (res) {
+    if (res.status === 404) {
+      alert(
+        'La création de compte à échouée, veuillez réessayer ultérieurement ou contacter les responsables.'
+      )
+    } else {
+      alert(
+        'Création du compte avec succès ! Vous pouvez dès à présent vous connecter '
+      )
+    }
+  })
+  .catch(function (err) {
+    console.log(err)
+  })
+}
+
     return (
-      <Formulaire>
+      <Formulaire >
       <BlocForm>
         <FormTitle>Connectez vous !</FormTitle>
           <FormValue htmlFor="email">- Email -</FormValue>
-          <FormInput type="text" placeholder="Email" id="email" name="email" required/>
+          <FormInput type="text" placeholder="Email"  onChange={handleEmailChange} name="email" required/>
           <FormValue htmlFor="password">- Mot de Passe -</FormValue>
-          <FormInput type={passwordIsVisible ? 'text' : 'password'} placeholder="Mot de Passe" id="password" name="password" required/>
+          <FormInput type={passwordIsVisible ? 'text' : 'password'} placeholder="Mot de Passe" onChange={handlePasswordChange} name="password" required/>
           <Show type="button" onClick={() => setPasswordIsVisible(!passwordIsVisible)}>Montrer</Show>
           <p>Vous n'avez pas de compte ? <Link to="/SignUp">Inscrivez vous</Link></p>
-          <Log type="submit">Se connecter</Log>
+          <Log type="submit" onChange={formSubmitHandler}>Se connecter</Log>
       </BlocForm>
       </Formulaire>
     )

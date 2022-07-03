@@ -94,7 +94,6 @@ function Form() {
     },
     body: JSON.stringify(userInput),
   })
-  
   .then(function (res) {
     if (res.status === 404) {
       alert(
@@ -115,7 +114,7 @@ function Form() {
       <BlocForm>
         <FormTitle>Inscivez vous dès maintenant !</FormTitle>
           <FormValue htmlFor="Pseuso">- Pseudo -</FormValue>
-          <FormInput type="text" placeholder="Votre pseudo" onChange={handlePseudoChange} required/>
+          <FormInput type="text" placeholder="Votre pseudo" onChange={handlePseudoChange} minLength={2} maxLength={10} required/>
           <FormValue htmlFor="email">- Email -</FormValue>
           <FormInput type="text" placeholder="Email"  onChange={handleEmailChange} required/>
           <FormValue htmlFor="password">- Mot de Passe -</FormValue>

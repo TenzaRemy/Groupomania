@@ -10,4 +10,4 @@ const blogSchema = mongoose.Schema({
   usersLiked: { type: Array, required: true},
 });
 
-module.exports = mongoose.model('sauce', blogSchema);
+module.exports = mongoose.model('Blog', blogSchema);
