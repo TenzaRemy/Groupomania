@@ -86,7 +86,7 @@ function Form() {
     event.preventDefault();
     console.log(userInput);
 
-  fetch('http://localhost:5000/api/auth/signup', {
+  fetch('http://localhost:5000/api/auth/signUp', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -95,17 +95,19 @@ function Form() {
     body: JSON.stringify(userInput),
   })
   .then(function (res) {
-    if (res.status === 404) {
+    if (res.status === 201 ) {
       alert(
-        'La création de compte à échouée, veuillez réessayer ultérieurement ou contacter les responsables.'
+        'Création du compte avec succès ! Vous pouvez dès à présent vous connecter.'
       )
     } else {
-      alert(
-        'Création du compte avec succès ! Vous pouvez dès à présent vous connecter '
-      )
+      if (res.status === 400 ) {
+        alert('Connexion invalide. Veuillez vérifier vos données saisies.')
+      }
+      
     }
   })
   .catch(function (err) {
+    alert(' Connexion invalide. Veuillez vérifier vos données saisies.')
     console.log(err)
   })
 }

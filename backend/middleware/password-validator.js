@@ -2,9 +2,9 @@ const express = require("express");
 const passwordValidator = require("password-validator");
 
 
-const schemaPassword = new passwordValidator();
+const passwordSchema = new passwordValidator();
 
-schemaPassword
+passwordSchema
   .is().min(6, "Minimum lenght 6")
   .has().uppercase(1, "At least One Uppercase")
   .has().lowercase(1, "At least One Lowercase")

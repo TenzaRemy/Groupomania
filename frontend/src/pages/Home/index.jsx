@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import colors from '../../utils/style/colors';
-import { Link } from 'react-router-dom'
-
 
 const Formulaire = styled.div`
   border-radius: 20px;
@@ -19,9 +17,9 @@ const Formulaire = styled.div`
 const BlocForm = styled.form`
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  padding: 10px;
   `
 
 const FormTitle = styled.h1`
@@ -63,15 +61,14 @@ const Log = styled.button`
   font-weight: 600;
 `
 
-function Form() {
-
+function Login() {
   const [passwordIsVisible, setPasswordIsVisible] = useState(false);
-
   
   const [userLogin, setUserLogin] = useState({
     email:'',
     password:'',    
   });
+
 
   const handleEmailChange = (event) => {
     setUserLogin({...userLogin, email: event.target.value });
@@ -81,9 +78,8 @@ function Form() {
     setUserLogin({...userLogin, password: event.target.value });
   }
 
-  const formLoginHandler = (event) => {
+  const formSubmitHandler = (event) => {
     event.preventDefault();
-    console.log(userLogin);
 
   fetch('http://localhost:5000/api/auth/login', {
     method: 'POST',
@@ -94,15 +90,14 @@ function Form() {
     body: JSON.stringify(userLogin),
   })
   .then(function (res) {
-    if (res.status === 404) {
+    if (res.status === 401) {
       alert(
-        'Connexion invalide vérifier votre Email et votre Mot de passe'
+        'Connexion invalide veuillez vérifier votre email et votre mot de passe.'
       )
     } else {
-      localStorage.setItem('token', res.user)
       alert(
-        'Connexion à votre compte avec succès !',
-       
+        'Bienvenue sur Groupomania ',
+        window.location ="/Blog"
       )
     }
   })
@@ -110,17 +105,15 @@ function Form() {
     console.log(err)
   })
 }
-
     return (
-      <Formulaire >
-      <BlocForm onChange={formLoginHandler}>
-        <FormTitle>Connectez vous !</FormTitle>
+      <Formulaire onSubmit={formSubmitHandler}>
+      <BlocForm>
+        <FormTitle>Connectez vous dès maintenant !</FormTitle>
           <FormValue htmlFor="email">- Email -</FormValue>
-          <FormInput type="text" placeholder="Email"  onChange={handleEmailChange} name="email" required/>
+          <FormInput type="text" placeholder="Email"  onChange={handleEmailChange} required/>
           <FormValue htmlFor="password">- Mot de Passe -</FormValue>
-          <FormInput type={passwordIsVisible ? 'text' : 'password'} placeholder="Mot de Passe" onChange={handlePasswordChange} name="password" required/>
+          <FormInput type={passwordIsVisible ? 'text' : 'password'} placeholder="Mot de Passe" onChange={handlePasswordChange} required/>
           <Show type="button" onClick={() => setPasswordIsVisible(!passwordIsVisible)}>Montrer</Show>
-          <p>Vous n'avez pas de compte ? <Link to="/SignUp">Inscrivez vous</Link></p>
           <Log type="submit">Se connecter</Log>
       </BlocForm>
       </Formulaire>
@@ -128,4 +121,4 @@ function Form() {
   }
 
   
-export default Form
+export default Login
