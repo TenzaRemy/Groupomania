@@ -81,7 +81,7 @@ function Form() {
     setUserLogin({...userLogin, password: event.target.value });
   }
 
-  const formSubmitHandler = (event) => {
+  const formLoginHandler = (event) => {
     event.preventDefault();
     console.log(userLogin);
 
@@ -96,11 +96,13 @@ function Form() {
   .then(function (res) {
     if (res.status === 404) {
       alert(
-        'La création de compte à échouée, veuillez réessayer ultérieurement ou contacter les responsables.'
+        'Connexion invalide vérifier votre Email et votre Mot de passe'
       )
     } else {
+      localStorage.setItem('token', res.user)
       alert(
-        'Création du compte avec succès ! Vous pouvez dès à présent vous connecter '
+        'Connexion à votre compte avec succès !',
+       
       )
     }
   })
@@ -111,7 +113,7 @@ function Form() {
 
     return (
       <Formulaire >
-      <BlocForm>
+      <BlocForm onChange={formLoginHandler}>
         <FormTitle>Connectez vous !</FormTitle>
           <FormValue htmlFor="email">- Email -</FormValue>
           <FormInput type="text" placeholder="Email"  onChange={handleEmailChange} name="email" required/>
@@ -119,7 +121,7 @@ function Form() {
           <FormInput type={passwordIsVisible ? 'text' : 'password'} placeholder="Mot de Passe" onChange={handlePasswordChange} name="password" required/>
           <Show type="button" onClick={() => setPasswordIsVisible(!passwordIsVisible)}>Montrer</Show>
           <p>Vous n'avez pas de compte ? <Link to="/SignUp">Inscrivez vous</Link></p>
-          <Log type="submit" onChange={formSubmitHandler}>Se connecter</Log>
+          <Log type="submit">Se connecter</Log>
       </BlocForm>
       </Formulaire>
     )

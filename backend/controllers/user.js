@@ -48,4 +48,22 @@ exports.signup = (req, res, next) => {
   };
 
 // Se déconnecter exports.logout
- 
+
+
+
+
+exports.getOneUser = (req, res, next) => {
+  User.find()
+  .then((Users) => {res.status(200).json(user);})
+
+    .catch((error) => {res.status(400).json({error: error});
+    });
+};
+
+exports.getAllUsers = (req, res, next) => {
+  User.find()
+  .then((Users) => {res.status(200).json(User);})
+
+    .catch((error) => {res.status(400).json({error: error});
+    });
+};
