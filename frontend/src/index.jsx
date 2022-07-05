@@ -6,6 +6,8 @@ import GlobalStyle from './utils/style/GlobalStyle'
 import Error from './components/Error'
 import Header from './components/Header'
 import SignUp from './pages/SignUp'
+import Blog from './pages/Blog';
+import Profil from './pages/Profil';
 
 
 
@@ -21,7 +23,8 @@ root.render(
           <Route exact path="/" element={<Home/>}/>
           <Route path="*" element={<Error/>}/>
           <Route path="/SignUp" element={<SignUp/>}/> 
- 
+          <Route path="/Blog" element={<Blog/>}/>
+          <Route path="/Profil" element={<Profil/>}/>
         </Routes>
     </Router>
   </React.StrictMode>

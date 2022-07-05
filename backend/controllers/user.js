@@ -41,16 +41,20 @@ exports.signup = (req, res, next) => {
                 { expiresIn: '24h' }
               )
             });
+             res.cookie("token", token, {
+            httpOnly: true,
+            maxAge: 3 * 24 * 60 * 60 * 1000,
+          });
           })
           .catch(error => res.status(500).json({ error }));
       })
       .catch(error => res.status(500).json({ error }));
   };
 
-// Se déconnecter exports.logout
-
-
-
+exports.logout = (req, res, next) => {
+  res.cookie("token", "", { maxAge: 1 });
+  res.redirect("/");
+}
 
 exports.getOneUser = (req, res, next) => {
   User.find()

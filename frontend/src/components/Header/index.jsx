@@ -12,7 +12,7 @@ const NavLink = styled.nav`
   background-color: ${colors.tertiary};
   display: flex;
   justify-content: space-between;
-  box-shadow: 5px 5px 10px 5px lightgray;
+  box-shadow: 1px 2px 2px 1px black;
 `
 const ListLog = styled.ul`
   display: flex;

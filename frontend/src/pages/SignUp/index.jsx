@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import colors from '../../utils/style/colors';
 
+
 const Formulaire = styled.div`
   border-radius: 20px;
   border: 2px solid ${colors.tertiary};
@@ -84,7 +85,6 @@ function Form() {
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
-    console.log(userInput);
 
   fetch('http://localhost:5000/api/auth/signUp', {
     method: 'POST',
@@ -101,7 +101,7 @@ function Form() {
       )
     } else {
       if (res.status === 400 ) {
-        alert('Connexion invalide. Veuillez vérifier vos données saisies.')
+        alert('Inscription invalide. Vérifiez vos données saisies. Sachant que votre mot de passe doit contenir au moins 6 charactères dont UNE majuscule, UNE minuscule et 2 chiffres !')
       }
       
     }
