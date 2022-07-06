@@ -23,7 +23,7 @@ function Blog() {
         <NavLink>
             <BlocLink>
             <Link to="/Profil"><List>Mon Profil</List></Link>
-                <List>Se Déconnecter</List>
+                <Link to="/Logout"><List>Se Déconnecter</List></Link>
             </BlocLink>
         </NavLink>
       </div>

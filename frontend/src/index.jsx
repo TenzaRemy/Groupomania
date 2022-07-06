@@ -8,6 +8,7 @@ import Header from './components/Header'
 import SignUp from './pages/SignUp'
 import Blog from './pages/Blog';
 import Profil from './pages/Profil';
+import Logout from './pages/Logout';
 
 
 
@@ -25,6 +26,7 @@ root.render(
           <Route path="/SignUp" element={<SignUp/>}/> 
           <Route path="/Blog" element={<Blog/>}/>
           <Route path="/Profil" element={<Profil/>}/>
+          <Route path="/Logout" element={<Logout/>}/>
         </Routes>
     </Router>
   </React.StrictMode>

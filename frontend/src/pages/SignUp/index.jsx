@@ -101,7 +101,7 @@ function Form() {
       )
     } else {
       if (res.status === 400 ) {
-        alert('Inscription invalide. Vérifiez vos données saisies. Sachant que votre mot de passe doit contenir au moins 6 charactères dont UNE majuscule, UNE minuscule et 2 chiffres !')
+        alert('Inscription invalide. Vérifiez vos données saisies. Sachant que votre mot de passe doit contenir au moins 6 charactères dont UNE majuscule, UNE minuscule et UN chiffre !')
       }
       
     }
