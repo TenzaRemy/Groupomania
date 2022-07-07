@@ -2,7 +2,6 @@ import React from "react";
 
 function Logout() {
 
-
     fetch('http://localhost:5000/api/auth/Logout', {
         method: 'GET',
         headers: {
@@ -13,6 +12,7 @@ function Logout() {
       .then(function (res) {
         if (res.status === 200) {
             alert('Déconnexion en cours');
+            window.location.href="/";
         
         }  
       })

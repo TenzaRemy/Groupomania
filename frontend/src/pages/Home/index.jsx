@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import colors from '../../utils/style/colors';
+import Header from '../../components/Header';
 
 const Formulaire = styled.div`
   border-radius: 20px;
@@ -106,17 +107,20 @@ function Login() {
   })
 }
     return (
-      <Formulaire onSubmit={formSubmitHandler}>
-      <BlocForm>
-        <FormTitle>Connectez vous dès maintenant !</FormTitle>
-          <FormValue htmlFor="email">- Email -</FormValue>
-          <FormInput type="text" placeholder="Email"  onChange={handleEmailChange} required/>
-          <FormValue htmlFor="password">- Mot de Passe -</FormValue>
-          <FormInput type={passwordIsVisible ? 'text' : 'password'} placeholder="Mot de Passe" onChange={handlePasswordChange} required/>
-          <Show type="button" onClick={() => setPasswordIsVisible(!passwordIsVisible)}>Montrer</Show>
-          <Log type="submit">Se connecter</Log>
-      </BlocForm>
-      </Formulaire>
+      <div>
+        <Header></Header>
+        <Formulaire onSubmit={formSubmitHandler}>
+        <BlocForm>
+          <FormTitle>Connectez vous dès maintenant !</FormTitle>
+            <FormValue htmlFor="email">- Email -</FormValue>
+            <FormInput type="text" placeholder="Email"  onChange={handleEmailChange} required/>
+            <FormValue htmlFor="password">- Mot de Passe -</FormValue>
+            <FormInput type={passwordIsVisible ? 'text' : 'password'} placeholder="Mot de Passe" onChange={handlePasswordChange} required/>
+            <Show type="button" onClick={() => setPasswordIsVisible(!passwordIsVisible)}>Montrer</Show>
+            <Log type="submit">Se connecter</Log>
+        </BlocForm>
+        </Formulaire>
+      </div>
     )
   }
 

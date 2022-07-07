@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import colors from '../../utils/style/colors';
+import Header from '../../components/Header';
 
 
 const Formulaire = styled.div`
@@ -112,19 +113,22 @@ function Form() {
   })
 }
     return (
-      <Formulaire onSubmit={formSubmitHandler}>
-      <BlocForm>
-        <FormTitle>Inscivez vous dès maintenant !</FormTitle>
-          <FormValue htmlFor="Pseuso">- Pseudo -</FormValue>
-          <FormInput type="text" placeholder="Votre pseudo" onChange={handlePseudoChange} minLength={2} maxLength={10} required/>
-          <FormValue htmlFor="email">- Email -</FormValue>
-          <FormInput type="text" placeholder="Email"  onChange={handleEmailChange} required/>
-          <FormValue htmlFor="password">- Mot de Passe -</FormValue>
-          <FormInput type={passwordIsVisible ? 'text' : 'password'} placeholder="Mot de Passe" onChange={handlePasswordChange} required/>
-          <Show type="button" onClick={() => setPasswordIsVisible(!passwordIsVisible)}>Montrer</Show>
-          <Log type="submit">S'inscrire</Log>
-      </BlocForm>
-      </Formulaire>
+      <div>
+        <Header />
+        <Formulaire onSubmit={formSubmitHandler}>
+        <BlocForm>
+          <FormTitle>Inscivez vous dès maintenant !</FormTitle>
+            <FormValue htmlFor="Pseuso">- Pseudo -</FormValue>
+            <FormInput type="text" placeholder="Votre pseudo" onChange={handlePseudoChange} minLength={2} maxLength={10} required/>
+            <FormValue htmlFor="email">- Email -</FormValue>
+            <FormInput type="text" placeholder="Email"  onChange={handleEmailChange} required/>
+            <FormValue htmlFor="password">- Mot de Passe -</FormValue>
+            <FormInput type={passwordIsVisible ? 'text' : 'password'} placeholder="Mot de Passe" onChange={handlePasswordChange} required/>
+            <Show type="button" onClick={() => setPasswordIsVisible(!passwordIsVisible)}>Montrer</Show>
+            <Log type="submit">S'inscrire</Log>
+        </BlocForm>
+        </Formulaire>
+      </div>
     )
   }
 

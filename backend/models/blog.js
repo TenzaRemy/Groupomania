@@ -4,10 +4,12 @@ const blogSchema = mongoose.Schema({
   userId: { type: String, required: true},
   name: { type: String, required: true },
   title: { type: String, required: true},
-  description: { type: String, required: true },    
+  description: { type: String, required: true},    
   imageUrl: { type: String, required: false},
   likes: { type: Number, required: true},
+  dislikes: { type:Array, required: true},
   usersLiked: { type: Array, required: true},
+  usersDisled: { type: Array, required: true},
 });
 
 module.exports = mongoose.model('Blog', blogSchema);
