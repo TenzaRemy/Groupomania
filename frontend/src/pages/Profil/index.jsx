@@ -9,13 +9,14 @@ const NavLink = styled.nav`
     display: flex;
     justify-content: start;
     background-color: ${colors.tertiary};
+    box-shadow: 1px 2px 1px 1px black;
 `
 const BlocLink = styled.ul`
     display: flex;
     justif-content: space-between;
 `
 const FormLogo = styled.img`
-  width: 30%;
+  width: 290px;
 `
 
 const IconHome = styled.li`
@@ -23,8 +24,20 @@ const IconHome = styled.li`
     font-size: 30px;
     color: ${colors.secondary};
 `
-function Profil() {
+const BlocProfil = styled.div`
+    border: 1px black solid;
+`
+
+const Pseudo = styled.h1`
+    colors: red;
+`
+
+
+function Profil(props) {
     
+    const userInput = {pseudo:"Richard", email:"" }
+   
+
     return (
         <div>
         <NavLink>
@@ -33,6 +46,9 @@ function Profil() {
             <Link to="/Blog"><IconHome><AiFillHome /></IconHome></Link>
             </BlocLink>
         </NavLink>
+        <BlocProfil>
+            <Pseudo>{userInput.pseudo}</Pseudo>
+        </BlocProfil>
       </div>
     )
 }

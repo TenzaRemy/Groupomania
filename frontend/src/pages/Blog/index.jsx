@@ -10,6 +10,7 @@ const NavLink = styled.nav`
     display: flex;
     justify-content: start;
     background-color: ${colors.tertiary};
+    box-shadow: 1px 2px 1px 1px black;
 `
 const BlocLink = styled.ul`
     display: flex;
@@ -21,7 +22,7 @@ const List = styled.li`
     color: ${colors.secondary};
 `
 const FormLogo = styled.img`
-  width: 30%;
+  width: 290px;
 `
 
 

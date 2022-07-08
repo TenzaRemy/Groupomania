@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 const FormLogo = styled.img`
   width: 370px;
   height: 100px;
+  padding: 3px 0 0 20px;
   `
 const NavLink = styled.nav`
   width: 100%;
