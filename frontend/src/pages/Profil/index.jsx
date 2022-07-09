@@ -45,7 +45,7 @@ function Profil() {
     const navigate = useNavigate();
   useEffect(() => {
     if (!localStorage.token) {
-      navigate("/error");
+      navigate("/Unauthorized");
     }
   }, [navigate]);
    

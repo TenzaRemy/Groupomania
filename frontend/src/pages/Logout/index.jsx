@@ -14,7 +14,6 @@ function Logout() {
           localStorage.clear(); 
       })
       .catch(function (err) {
-        alert(' Déconnexion impossible')
         console.log(err)
       })
      

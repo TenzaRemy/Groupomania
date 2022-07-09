@@ -81,10 +81,12 @@ function Login() {
   .then ((res) =>{
     console.log(res);
     if (res.status === 401){
-      alert('Connexion invalide veuillez vérifier votre email et votre mot de passe.');      
+      alert('verifier vos donnés saisies');
     } else {
       window.location="/Blog";
-      localStorage.token = res.data.token;
+      localStorage.setItem('userdata', JSON.stringify(res.data))
+        localStorage.setItem('token', (res.data.token))
+        console.log(res.data.pseudo)
     }
   })
   .catch ((err) => {

@@ -73,8 +73,7 @@ function Form() {
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
-    const emailError = document.querySelector(".email.error");
-    const passwordError = document.querySelector(".password.error");
+
    
   axios.post('http://localhost:5000/api/auth/signUp', {
 
@@ -84,12 +83,12 @@ function Form() {
   })
   .then((res) => {
     console.log(res);
-    if (res.data.errors) {
-      emailError.innerHTML = res.data.emailError;
-      passwordError.innerHTML = res.data.passwordError;
+    if (res.status === 400) {
+      alert('Vérifier vos données saisies.');
     } else {
       window.location = "/";
-      localStorage.token = res.data.token;
+        localStorage.setItem('userdata', JSON.stringify(res.data))
+        localStorage.setItem('token', (res.data.token))
     }
   })
   .catch((err) => {
@@ -109,7 +108,9 @@ function Form() {
             <FormInput type="text" placeholder="Email" onChange={(event) => setEmail(event.target.value)}  required/>
             <FormValue htmlFor="password">- Mot de Passe -</FormValue>
             <FormInput type={passwordIsVisible ? 'text' : 'password'} placeholder="Mot de Passe" onChange={(event) => setPassword(event.target.value)} required/>
-            <Show type="button" onClick={() => setPasswordIsVisible(!passwordIsVisible)}>Montrer</Show>
+            <Show type="button" onClick={() => setPasswordIsVisible(!passwordIsVisible)}>
+            {passwordIsVisible ? 'Cacher' : 'Montrer'}
+            </Show>
             <Log type="submit">S'inscrire</Log>
         </BlocForm>
         </Formulaire>

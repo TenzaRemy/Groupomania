@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
     // on extrait le token du header d'auth de la requete et fonction split pour récupérer le Bearer token
     const token = req.headers.authorization.split(' ')[1];
     // On décode le token en vérifiant qu'il correspond bien avec sa clé secrete
-    const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
+    const decodedToken = jwt.verify(token, process.env.RANDOM_TOKEN_SECRET);
     // La clé décodée est récupéré 
     const userId = decodedToken.userId;
     // Du coup s'il y a un des id qui est différent entre  la requete et le token alors l'accès n'est pas autorisé

@@ -39,7 +39,9 @@ exports.signup = (req, res, next) => {
                 { userId: user._id },
                 'RANDOM_TOKEN_SECRET', // Création du TOKEN d'authentification pour sécurité
                 { expiresIn: '24h' }
-              )
+              ),
+              pseudo: user.pseudo,
+              email: user.email,
             });
           })
           .catch(error => res.status(500).json({ error }));

@@ -8,6 +8,7 @@ import SignUp from './pages/SignUp'
 import Blog from './pages/Blog';
 import Profil from './pages/Profil';
 import Logout from './pages/Logout';
+import Unauthorized from './components/Unauthorized';
 
 
 
@@ -20,6 +21,7 @@ root.render(
       <GlobalStyle />
         <Routes>
           <Route path="*" element={<Error/>}/>
+          <Route path="/Unauthorized" element={<Unauthorized/>}/>
           <Route exact path="/" element={<Home/>}/>
           <Route path="/SignUp" element={<SignUp/>}/> 
           <Route path="/Blog" element={<Blog/>}/>
