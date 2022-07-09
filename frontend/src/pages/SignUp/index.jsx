@@ -103,7 +103,7 @@ function Form() {
         <BlocForm>
           <FormTitle>Inscivez vous dès maintenant !</FormTitle>
             <FormValue htmlFor="Pseuso">- Pseudo -</FormValue>
-            <FormInput type="text" placeholder="Votre pseudo" onChange={(event) => setPseudo(event.target.value)} minLength={2} maxLength={10} required/>
+            <FormInput type="text" placeholder="Votre pseudo" onChange={(event) => setPseudo(event.target.value)} minLength={2} maxLength={16} required/>
             <FormValue htmlFor="email">- Email -</FormValue>
             <FormInput type="text" placeholder="Email" onChange={(event) => setEmail(event.target.value)}  required/>
             <FormValue htmlFor="password">- Mot de Passe -</FormValue>

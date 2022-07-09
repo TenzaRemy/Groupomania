@@ -86,7 +86,7 @@ function Login() {
       window.location="/Blog";
       localStorage.setItem('userdata', JSON.stringify(res.data))
         localStorage.setItem('token', (res.data.token))
-        console.log(res.data.pseudo)
+        console.log(res.data)
     }
   })
   .catch ((err) => {

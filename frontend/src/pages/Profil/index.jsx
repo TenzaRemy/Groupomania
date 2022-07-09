@@ -4,7 +4,12 @@ import colors from "../../utils/style/colors";
 import { Link } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import styled from "styled-components";
-import Logo from '../../assets/icon-left-font-removebg.png'
+import Logo from '../../assets/icon-left-font-removebg.png';
+import { FaDribbble } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import { FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF } from "react-icons/fa";
+import Picture from '../../assets/pp.png';
 
 const NavLink = styled.nav`
     display: flex;
@@ -26,29 +31,41 @@ const IconHome = styled.li`
     color: ${colors.secondary};
 `
 const BlocProfil = styled.div`
-    border: 1px black solid;
+    margin: 75px auto;
+    background-color: ${colors.tertiary};
+    color: #b3b8cd;
+    border-radius: 5px;
+    width: 350px;
+    height: 400px;
+    text-align: center;
+    box-shadow: 0 10px 20px -10px rgba(0,0,0,.75);
 `
 
-const Pseudo = styled.h1`
-    color: red;
+const ProfilPic = styled.img`
+    height: 190px;
+    width: 260px;
+    margin-top: 20px;
 `
-fetch('http://localhost:5000/api/auth/user', {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-  })
+const Pseudo = styled.h2`
+    color: ${colors.primary};
+    opacity: 0.9;
+`
+const Reseau = styled.div`
+    display: flex;
+    justify-content: space-around;
+    font-size: 22px;
+    margin-bottom: 5px;
+`
 
 function Profil() {
-    
     const navigate = useNavigate();
   useEffect(() => {
     if (!localStorage.token) {
       navigate("/Unauthorized");
     }
   }, [navigate]);
-   
+
+    let user = JSON.parse(localStorage.getItem("userdata"));
 
     return (
         <div>
@@ -59,9 +76,20 @@ function Profil() {
             </BlocLink>
         </NavLink>
         <BlocProfil>
-            <Pseudo>Pseudo123</Pseudo>
+            <div>
+                <ProfilPic src={Picture} alt="Profil" />
+            </div>
+                <Pseudo>{user.pseudo}</Pseudo>
+                <h3>Employé de Groupomania</h3>
+                <h4>{user.email}</h4>
+            <Reseau>
+                <FaFacebookF />
+                <FaTwitter />
+                <FaDribbble />
+                <FaLinkedinIn />
+            </Reseau>
         </BlocProfil>
-      </div>
+        </div>
     )
 }
 
