@@ -10,11 +10,8 @@ function Logout() {
         },
       })
       .then(function (res) {
-        if (res.status === 200) {
-            alert('Déconnexion en cours');
-            window.location.href="/";
-        
-        }  
+          window.location = '/';
+          localStorage.clear(); 
       })
       .catch(function (err) {
         alert(' Déconnexion impossible')
@@ -23,7 +20,7 @@ function Logout() {
      
     
     return (
-        <div>Page de déconnexion</div>
+        <div></div>
 
     )
 

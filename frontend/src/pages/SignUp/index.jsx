@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import colors from '../../utils/style/colors';
 import Header from '../../components/Header';
+import axios from 'axios';
 
 
 const Formulaire = styled.div`
@@ -66,52 +67,36 @@ const Log = styled.button`
 function Form() {
   const [passwordIsVisible, setPasswordIsVisible] = useState(false);
   
-  const [userInput, setUserInput] = useState({
-    pseudo:'',
-    email:'',
-    password:'',    
-  });
-
-  const handlePseudoChange = (event) => {
-    setUserInput({...userInput, pseudo: event.target.value });
-  }
-
-  const handleEmailChange = (event) => {
-    setUserInput({...userInput, email: event.target.value });
-  }
-
-  const handlePasswordChange = (event) => {
-    setUserInput({...userInput, password: event.target.value });
-  }
+  const [pseudo, setPseudo] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
+    const emailError = document.querySelector(".email.error");
+    const passwordError = document.querySelector(".password.error");
+   
+  axios.post('http://localhost:5000/api/auth/signUp', {
 
-  fetch('http://localhost:5000/api/auth/signUp', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(userInput),
+    pseudo,
+    email,
+    password,
   })
-  .then(function (res) {
-    if (res.status === 201 ) {
-      alert(
-        'Création du compte avec succès ! Vous pouvez dès à présent vous connecter.'
-      )
+  .then((res) => {
+    console.log(res);
+    if (res.data.errors) {
+      emailError.innerHTML = res.data.emailError;
+      passwordError.innerHTML = res.data.passwordError;
     } else {
-      if (res.status === 400 ) {
-        alert('Inscription invalide. Vérifiez vos données saisies. Sachant que votre mot de passe doit contenir au moins 6 charactères dont UNE majuscule, UNE minuscule et UN chiffre !')
-      }
-      
+      window.location = "/";
+      localStorage.token = res.data.token;
     }
   })
-  .catch(function (err) {
-    alert(' Connexion invalide. Veuillez vérifier vos données saisies.')
-    console.log(err)
-  })
+  .catch((err) => {
+    console.log(err);
+  });
 }
+
     return (
       <div>
         <Header />
@@ -119,11 +104,11 @@ function Form() {
         <BlocForm>
           <FormTitle>Inscivez vous dès maintenant !</FormTitle>
             <FormValue htmlFor="Pseuso">- Pseudo -</FormValue>
-            <FormInput type="text" placeholder="Votre pseudo" onChange={handlePseudoChange} minLength={2} maxLength={10} required/>
+            <FormInput type="text" placeholder="Votre pseudo" onChange={(event) => setPseudo(event.target.value)} minLength={2} maxLength={10} required/>
             <FormValue htmlFor="email">- Email -</FormValue>
-            <FormInput type="text" placeholder="Email"  onChange={handleEmailChange} required/>
+            <FormInput type="text" placeholder="Email" onChange={(event) => setEmail(event.target.value)}  required/>
             <FormValue htmlFor="password">- Mot de Passe -</FormValue>
-            <FormInput type={passwordIsVisible ? 'text' : 'password'} placeholder="Mot de Passe" onChange={handlePasswordChange} required/>
+            <FormInput type={passwordIsVisible ? 'text' : 'password'} placeholder="Mot de Passe" onChange={(event) => setPassword(event.target.value)} required/>
             <Show type="button" onClick={() => setPasswordIsVisible(!passwordIsVisible)}>Montrer</Show>
             <Log type="submit">S'inscrire</Log>
         </BlocForm>

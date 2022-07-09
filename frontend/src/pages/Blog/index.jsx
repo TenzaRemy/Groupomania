@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import colors from '../../utils/style/colors';
 import { Link } from 'react-router-dom';
@@ -14,7 +15,7 @@ const NavLink = styled.nav`
 `
 const BlocLink = styled.ul`
     display: flex;
-    justif-content: space-between;
+    justify-content: space-between;
 `
 const List = styled.li`
     padding: 15px 30px 10px 50px;
@@ -27,7 +28,13 @@ const FormLogo = styled.img`
 
 
 function Blog() {
-    
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.token) {
+      navigate("/error");
+    }
+  }, [navigate]);
+
   
     return (
       <div>
@@ -35,9 +42,10 @@ function Blog() {
             <BlocLink>
             <FormLogo src={Logo} alt="Logo de l'entreprise Groupomania" />
             <Link to="/Profil"><List><CgProfile /></List></Link>
-            <Link to="/"><List><BiLogOut /></List></Link>
+            <Link to="/Logout"><List><BiLogOut /></List></Link>
             </BlocLink>
         </NavLink>
+        
       </div>
     )
   }

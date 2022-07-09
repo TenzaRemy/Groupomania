@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 import colors from "../../utils/style/colors";
 import { Link } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
@@ -13,7 +14,7 @@ const NavLink = styled.nav`
 `
 const BlocLink = styled.ul`
     display: flex;
-    justif-content: space-between;
+    justify-content: space-between;
 `
 const FormLogo = styled.img`
   width: 290px;
@@ -29,13 +30,24 @@ const BlocProfil = styled.div`
 `
 
 const Pseudo = styled.h1`
-    colors: red;
+    color: red;
 `
+fetch('http://localhost:5000/api/auth/user', {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  })
 
-
-function Profil(props) {
+function Profil() {
     
-    const userInput = {pseudo:"Richard", email:"" }
+    const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.token) {
+      navigate("/error");
+    }
+  }, [navigate]);
    
 
     return (
@@ -47,7 +59,7 @@ function Profil(props) {
             </BlocLink>
         </NavLink>
         <BlocProfil>
-            <Pseudo>{userInput.pseudo}</Pseudo>
+            <Pseudo>Pseudo123</Pseudo>
         </BlocProfil>
       </div>
     )

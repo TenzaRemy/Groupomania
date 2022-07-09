@@ -50,6 +50,7 @@ exports.signup = (req, res, next) => {
 
 exports.logout = (req, res, next) => {
   res.clearCookie("jwt");
+  window.localStorage.clear()
   res.redirect("/");
   res.status(200).send('Utilisateur déconnecté');
 }

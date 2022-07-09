@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import colors from '../../utils/style/colors';
 import Header from '../../components/Header';
+import axios from 'axios';
 
 const Formulaire = styled.div`
   border-radius: 20px;
@@ -65,47 +66,31 @@ const Log = styled.button`
 function Login() {
   const [passwordIsVisible, setPasswordIsVisible] = useState(false);
   
-  const [userLogin, setUserLogin] = useState({
-    email:'',
-    password:'',    
-  });
-
-
-  const handleEmailChange = (event) => {
-    setUserLogin({...userLogin, email: event.target.value });
-  }
-
-  const handlePasswordChange = (event) => {
-    setUserLogin({...userLogin, password: event.target.value });
-  }
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
 
-  fetch('http://localhost:5000/api/auth/login', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(userLogin),
+   
+  axios.post('http://localhost:5000/api/auth/login', {
+
+    email,
+    password,
   })
-  .then(function (res) {
-    if (res.status === 401) {
-      alert(
-        'Connexion invalide veuillez vérifier votre email et votre mot de passe.'
-      )
+  .then ((res) =>{
+    console.log(res);
+    if (res.status === 401){
+      alert('Connexion invalide veuillez vérifier votre email et votre mot de passe.');      
     } else {
-      alert(
-        'Bienvenue sur Groupomania ',
-        window.location ="/Blog"
-      )
+      window.location="/Blog";
+      localStorage.token = res.data.token;
     }
   })
-  .catch(function (err) {
-    console.log(err)
+  .catch ((err) => {
+      console.log(err);
   })
-}
+  }
     return (
       <div>
         <Header></Header>
@@ -113,16 +98,18 @@ function Login() {
         <BlocForm>
           <FormTitle>Connectez vous dès maintenant !</FormTitle>
             <FormValue htmlFor="email">- Email -</FormValue>
-            <FormInput type="text" placeholder="Email"  onChange={handleEmailChange} required/>
+            <FormInput type="text" placeholder="Email"  onChange={(event) => setEmail(event.target.value)} required/>
             <FormValue htmlFor="password">- Mot de Passe -</FormValue>
-            <FormInput type={passwordIsVisible ? 'text' : 'password'} placeholder="Mot de Passe" onChange={handlePasswordChange} required/>
-            <Show type="button" onClick={() => setPasswordIsVisible(!passwordIsVisible)}>Montrer</Show>
+            <FormInput type={passwordIsVisible ? 'text' : 'password'} placeholder="Mot de Passe" onChange={(event) => setPassword(event.target.value)} required/>
+            <Show type="button" onClick={() => setPasswordIsVisible(!passwordIsVisible)}>
+              {passwordIsVisible ? 'Cacher' : 'Montrer'}
+            </Show>
             <Log type="submit">Se connecter</Log>
         </BlocForm>
         </Formulaire>
       </div>
     )
-  }
-
+  
+    }
   
 export default Login

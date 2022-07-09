@@ -10,14 +10,6 @@ exports.getAllBlogs = (req, res, next) => {
       });
   };
 
-exports.getOneBlog = (req, res, next) => {
-    Blog.findOne({_id: req.params.id})
-    .then((Blog) => {res.status(200).json(Blog);})
-
-      .catch((error) => {res.status(404).json({error: error});
-      });
-  };
-
 exports.createBlog = (req, res, next) => {
     const blogObject = JSON.parse(req.body.blog);
     delete blogObject._id;
