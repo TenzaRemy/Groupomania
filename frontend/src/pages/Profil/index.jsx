@@ -23,6 +23,11 @@ const BlocLink = styled.ul`
 `
 const FormLogo = styled.img`
   width: 290px;
+
+  @media only screen and (max-width: 768px) {
+    width: 170px;
+    height: 60px;
+  }
 `
 
 const IconHome = styled.li`
@@ -57,7 +62,7 @@ const Reseau = styled.div`
     margin-bottom: 5px;
 `
 
-function Profil() {
+function Profil() { 
     const navigate = useNavigate();
   useEffect(() => {
     if (!localStorage.token) {

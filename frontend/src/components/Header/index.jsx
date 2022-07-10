@@ -7,6 +7,12 @@ const FormLogo = styled.img`
   width: 370px;
   height: 100px;
   padding: 3px 0 0 20px;
+
+  @media only screen and (max-width: 768px) {
+    width: 370px;
+    height: 90px;
+    padding: 0;
+  }
   `
 const NavLink = styled.nav`
   width: 100%;
@@ -28,6 +34,9 @@ const List = styled.li`
   background-color: ${colors.primary};
   color: black;
   box-shadow: 1px 1px 1px 1px black;
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 `
 
 

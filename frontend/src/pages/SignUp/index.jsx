@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import colors from '../../utils/style/colors';
 import Header from '../../components/Header';
 import axios from 'axios';
+import { Link } from 'react-router-dom'
 
 
 const Formulaire = styled.div`
@@ -15,6 +16,13 @@ const Formulaire = styled.div`
 		top: 27%;
 		left: 25%;
     background-color: ${colors.secondary};
+
+    @media only screen and (max-width: 768px) {
+      width: 94%;
+      display: flex;
+      position: absolute;
+      left: 0%;
+    }
 `
 
 const BlocForm = styled.form`
@@ -55,13 +63,20 @@ const Log = styled.button`
   background: linear-gradient(160deg, rgba(78,81,102,1) 66%, rgba(255,215,215,1) 120%); 
   width: 33%;
   padding: 10px;
-  margin: 40px 0 0 0;
+  margin: 20px 0 0 0;
   box-shadow: -1px 2px 2px 3px lightgray;
   display: flex;
   justify-content: center;
   align-self: center;
   font-size: 18px;
   font-weight: 600;
+
+  @media only screen and (max-width: 768px) {
+    width: 40%;
+  }
+`
+const Sign = styled.span`
+  color: ${colors.primary};
 `
 
 function Form() {
@@ -111,6 +126,7 @@ function Form() {
             <Show type="button" onClick={() => setPasswordIsVisible(!passwordIsVisible)}>
             {passwordIsVisible ? 'Cacher' : 'Montrer'}
             </Show>
+            <p>Déjà un compte ? <Link to="/"><Sign>Connectez-vous ici</Sign></Link></p>
             <Log type="submit">S'inscrire</Log>
         </BlocForm>
         </Formulaire>
