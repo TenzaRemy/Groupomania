@@ -96,9 +96,8 @@ function Login() {
     password,
   })
   .then ((res) =>{
-    console.log(res);
     if (res.status === 401){
-      alert('verifier vos donnés saisies');
+      console.log(res);
     } else {
       window.location="/Blog";
       localStorage.setItem('userdata', JSON.stringify(res.data))
@@ -107,6 +106,7 @@ function Login() {
     }
   })
   .catch ((err) => {
+    alert('Les données saisies ne correspondent à aucun compte. Veuillez vérifier votre Adresse mail et/ou votre mot de passe.');
       console.log(err);
   })
   }

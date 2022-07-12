@@ -97,9 +97,8 @@ function Form() {
     password,
   })
   .then((res) => {
-    console.log(res);
     if (res.status === 400) {
-      alert('Vérifier vos données saisies.');
+    console.log(res);
     } else {
       window.location = "/";
         localStorage.setItem('userdata', JSON.stringify(res.data))
@@ -108,6 +107,7 @@ function Form() {
   })
   .catch((err) => {
     console.log(err);
+    alert('Vérifier vos données saisies.');
   });
 }
 

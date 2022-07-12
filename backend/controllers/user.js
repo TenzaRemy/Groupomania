@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt'); // Crypter les données
 const jwt = require('jsonwebtoken');
-const { populate } = require('../models/user');
 
 const User = require('../models/user');// Importation du modele User
 

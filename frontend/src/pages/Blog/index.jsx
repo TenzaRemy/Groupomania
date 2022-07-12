@@ -1,4 +1,4 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import colors from '../../utils/style/colors';
@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { BiLogOut } from 'react-icons/bi';
 import { CgProfile } from 'react-icons/cg';
 import Logo from '../../assets/icon-left-font-removebg.png';
+import PostCreate from '../../components/PostCreate';
 
 const NavLink = styled.nav`
     display: flex;
@@ -30,7 +31,7 @@ const FormLogo = styled.img`
   width: 290px;
 
   @media only screen and (max-width: 768px) {
-    width: 170px;
+    width: 180px;
     height: 60px;
   }
 `
@@ -44,7 +45,6 @@ function Blog() {
     }
   }, [navigate]);
 
-  
     return (
       <div>
         <NavLink>
@@ -54,10 +54,8 @@ function Blog() {
             <Link to="/Logout"><List><BiLogOut /></List></Link>
             </BlocLink>
         </NavLink>
-        
-      </div>
+        <PostCreate></PostCreate>
+        </div>
     )
   }
-
-  
 export default Blog

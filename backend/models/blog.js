@@ -1,13 +1,12 @@
 const mongoose = require('mongoose'); 
 
 const blogSchema = mongoose.Schema({ 
-  userId: { type: String, required: true},
+  title: { type: String, required: true},
   message: { type: String, required: true},    
-  imageUrl: { type: String, required: false},
-  likes: { type: Number, required: true},
-  dislikes: { type:Array, required: true},
-  usersLiked: { type: Array, required: true},
-  usersDisliked: { type: Array, required: true},
+  likes: { type: Number },
+  dislikes: { type: Number},
+  usersLiked: { type: Array},
+  usersDisliked: { type: Array},
 });
 
 module.exports = mongoose.model('Blog', blogSchema);

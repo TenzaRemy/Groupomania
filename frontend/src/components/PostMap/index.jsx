@@ -1,15 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 const PostsRead = () => {
 
     const [posts, setPosts]= useState([]);
-    const [user, setUser] = useState([]);
 
     const Posts = () => {
 
-        axios.get(`http://localhost:5000/api/blog`)
+        axios.get(`localhost:5000/api/blog`)
         .then ((res) =>{
             setPosts(res.data.post)
             console.log(res);
@@ -30,7 +28,6 @@ const PostsRead = () => {
         <div className="post">
           <em>{element.user.firstName} {element.user.lastName}</em>
           <p>{element.content} {element.date}</p>
-          <Link to={`/post/${element.id}`}>Voir le post</Link>
         </div>
             ))}
 

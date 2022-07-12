@@ -5,7 +5,7 @@ const uniqueValidator = require('mongoose-unique-validator');
 const userSchema = mongoose.Schema({
   pseudo: { type: String, required: true, minLength: 2, maxLength: 16},
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  password: { type: String, required: true, minlength: [6, 'Mot de passetrop petit'], },
   image: { type: String, default: 'localhost:5000/images/pp.png' },
   isAdmin: { type: Boolean, default: false},
 });

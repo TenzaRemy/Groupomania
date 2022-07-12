@@ -11,17 +11,18 @@ exports.getAllBlogs = (req, res, next) => {
   };
 
 exports.createBlog = (req, res, next) => {
-    const blogObject = JSON.parse(req.body.blog);
+    const blogObject = req.body
     delete blogObject._id;
     const blog = new Blog({
         ...blogObject, 
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
-        likes: 0,  
+        likes: 0,
+        dislikes: 0, 
         usersLiked: [],
+        usersDisliked: [],
     });
     blog.save() 
     .then(() => res.status(201).json({ message: 'Publication enregistré !' }))
-    .catch(error => res.status(400).json({ error }))
+    .catch(error => res.status(400).json({ error: 'Publication non enregistrée !' }))
 };
 
 exports.modifyBlog = (req, res, next) => {
