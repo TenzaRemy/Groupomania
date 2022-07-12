@@ -7,6 +7,7 @@ import { BiLogOut } from 'react-icons/bi';
 import { CgProfile } from 'react-icons/cg';
 import Logo from '../../assets/icon-left-font-removebg.png';
 import PostCreate from '../../components/PostCreate';
+import PostMap from "../../components/PostMap";
 
 const NavLink = styled.nav`
     display: flex;
@@ -55,6 +56,7 @@ function Blog() {
             </BlocLink>
         </NavLink>
         <PostCreate></PostCreate>
+        <PostMap></PostMap>
         </div>
     )
   }

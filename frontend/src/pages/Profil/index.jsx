@@ -52,8 +52,8 @@ const ProfilPic = styled.img`
     margin-top: 20px;
 `
 const Pseudo = styled.h2`
-    color: ${colors.primary};
-    opacity: 0.9;
+    color: ${colors.secondary};
+    opacity: 1;
 `
 const Reseau = styled.div`
     display: flex;
