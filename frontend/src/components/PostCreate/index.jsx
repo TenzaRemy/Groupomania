@@ -38,6 +38,7 @@ const Publish = styled.button`
 function PostCreate() {
 
     const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
 
 const [title, setTitle] = useState('');
 const [message, setMessage] = useState('');
@@ -51,6 +52,7 @@ const formSubmitHandler = (event) => {
         },
         title,
         message,
+        userId,
     })
     .then ((res) =>{
           console.log(res);

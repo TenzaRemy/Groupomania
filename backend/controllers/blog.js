@@ -12,7 +12,6 @@ exports.getAllBlogs = (req, res, next) => {
 
 exports.createBlog = (req, res, next) => {
     const blogObject = req.body
-    delete blogObject._id;
     const blog = new Blog({
         ...blogObject, 
         likes: 0,
