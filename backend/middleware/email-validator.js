@@ -9,6 +9,6 @@ module.exports = (req, res, next) => {
     } else {
         return res.status(400).json({error : "L'email n'est pas valide."}),
         console.log("l'email saisie n'est pas valide");
-        alert("L'adresse mail n'est pas valide");
+        
     }
     }

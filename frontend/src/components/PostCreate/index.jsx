@@ -37,7 +37,7 @@ const Publish = styled.button`
 
 function PostCreate() {
 
-    const token = localStorage.getItem('token');
+    let user = JSON.parse(localStorage.getItem("userdata"));
     const userId = localStorage.getItem('userId');
 
 const [title, setTitle] = useState('');
@@ -48,7 +48,7 @@ const formSubmitHandler = (event) => {
        
     axios.post('http://localhost:5000/api/blog', {
         headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${user.token}`,
         },
         title,
         message,
