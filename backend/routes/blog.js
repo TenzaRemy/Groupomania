@@ -8,7 +8,7 @@ router.get("/", blogsCtrl.getAllBlogs);
 router.get("/:id", blogsCtrl.getOneBlog);
 router.post("/",  multer, blogsCtrl.createBlog);
 router.put("/:id", auth, multer, blogsCtrl.modifyBlog);
-router.delete("/:id", auth, blogsCtrl.deleteBlog);
+router.delete("/:id",  blogsCtrl.deleteBlog);
 
 router.post("/like", auth, blogsCtrl.likeBlog);
 

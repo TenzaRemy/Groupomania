@@ -11,10 +11,8 @@ const Formulaire = styled.div`
   box-shadow: 6px 7px 7px 6px ${colors.secondary};
   padding: 10px 10px 0;
   width: 50%;
-  position: absolute;
-		top: 27%;
-		left: 25%;
-    background-color: ${colors.secondary};
+  margin: 70px auto;
+  background-color: ${colors.secondary};
 
     @media only screen and (max-width: 768px) {
       width: 94%;

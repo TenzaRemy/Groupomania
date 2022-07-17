@@ -51,7 +51,7 @@ exports.modifyBlog = (req, res, next) => {
     Blog.updateOne({_id: req.params.id}, {$set: blogObject})
     .then(() => {res.status(200).json({message: 'Publications modifiée !'});
     })
-    .catch((error) => {res.status(400).json({ error: error});
+    .catch((error) => {res.status(400).json({  error: 'Impossible de modifier ce post', error});
     });
 };
 
@@ -62,10 +62,10 @@ exports.deleteBlog = (req, res, next) => {
         fs.unlink(`images/${filename}`, () => {
           Blog.deleteOne({ _id: req.params.id })
             .then(() => res.status(200).json({ message: 'Publication supprimé !'}))
-            .catch(error => res.status(400).json({ error }));
+            .catch(error => res.status(400).json({  error: 'Impossible de supprimer ce post', error }));
         });
       })
-      .catch(error => res.status(500).json({ error }));
+      .catch(error => res.status(500).json({  error: 'Impossible de supprimer ce post', error }));
   }; 
 
 exports.likeBlog = (req, res, next) => {

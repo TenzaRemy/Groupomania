@@ -12,6 +12,9 @@ const Message = styled.textarea`
     background-color: #e0e0e0;
     outline: none;
     padding: 3px;
+    @media only screen and (max-width: 768px) {
+        width: 350px;
+      }
 `
 const BlocForm = styled.form`
     display: flex;
@@ -29,6 +32,9 @@ const Title = styled.input`
     margin-bottom: 5px;
     outline: none;
     padding: 3px;
+    @media only screen and (max-width: 768px) {
+        width: 350px;
+      }
 `
 const Publish = styled.button`
     width: 100px;
@@ -60,6 +66,7 @@ const formSubmitHandler = (event) => {
     .then ((res) =>{
           console.log(res);
           alert("Publication bien enregistrée. Merci pour votre participation !");
+          window.location="/Blog"
       })
       .catch ((err) => {
           console.log(err);
