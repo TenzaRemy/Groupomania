@@ -5,7 +5,6 @@ import Comments from '../Comments';
 
 const SinglePost = () => {
   const params = useParams();
-
   const [post, setPost] = useState({});
 
   const Comment = () => {
@@ -23,6 +22,7 @@ const SinglePost = () => {
   }
     useEffect(() => {
       Comment();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
   console.log(post);
