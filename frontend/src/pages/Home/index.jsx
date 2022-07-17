@@ -69,6 +69,7 @@ const Log = styled.button`
   align-self: center;
   font-size: 18px;
   font-weight: 600;
+  cursor: pointer;
 
   @media only screen and (max-width: 768px) {
     width: 40%;
@@ -103,6 +104,7 @@ function Login() {
       localStorage.setItem('userdata', JSON.stringify(res.data))
         localStorage.setItem('token', (res.data.token))
         localStorage.setItem('userId', (res.data.userId))
+        localStorage.setItem('pseudo', (res.data.pseudo))
         console.log(res.data)
     }
   })

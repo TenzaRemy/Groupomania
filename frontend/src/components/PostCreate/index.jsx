@@ -33,12 +33,14 @@ const Title = styled.input`
 const Publish = styled.button`
     width: 100px;
     background-color: #e0e0e0;
+    cursor: pointer;
 `
 
 function PostCreate() {
 
     let user = JSON.parse(localStorage.getItem("userdata"));
     const userId = localStorage.getItem('userId');
+    const Pseudo= localStorage.getItem('pseudo');
 
 const [title, setTitle] = useState('');
 const [message, setMessage] = useState('');
@@ -53,6 +55,7 @@ const formSubmitHandler = (event) => {
         title,
         message,
         userId,
+        Pseudo,
     })
     .then ((res) =>{
           console.log(res);

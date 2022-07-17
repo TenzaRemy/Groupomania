@@ -4,42 +4,43 @@ import styled from 'styled-components';
 import colors from '../../utils/style/colors';
 
 const Title = styled.h2`
-    border: 1px solid black;
-    padding: 0 50px 0 50px;
+    padding: 10px 50px 0 50px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-top: 3px dashed ${colors.tertiary};
 `
 const BlocPost = styled.div`
     display: flex;
     flex-direction: column;
     margin: 0 300px 0 300px;
-    background-color: ${colors.tertiary};
+    background-color: #bebebe;
     border-radius: 20px 0 0 20px;
-    border: thick double ${colors.tertiary};
+    box-shadow: 2px 3px 3px 2px ${colors.tertiary};
     `
 
 const Message = styled.p`
-    border: 1px solid black;
+    margin: 4px;
     padding: 10px;
+    border-radius: 10px 0 0 10px;
+    background-color: ${colors.secondary};
 `
 
 const Author = styled.p`
     display: flex;
     justify-content; end;
-    border: 1px solid red;
     padding: 5px;
 `
 
 function PostRead() {
 
-    const [data, setData] = useState([]);
+    const [posts, setPosts] = useState([]);
 
     const getData = () => {
-     axios.get('http://localhost:5000/api/blog')
+        axios.get('http://localhost:5000/api/blog')
             .then(res => {
-                setData(res.blog);
-                console.log(res);
+                setPosts(res.data);
+                console.log(res.data);
             })
             .catch(error => {
                 console.log(error)
@@ -53,19 +54,18 @@ function PostRead() {
 
 
 
-<div>
-  {data.map((element) => {
     return (
         <BlocPost>
-      <Title key={element.id}></Title>
-        <Author>{element.pseudo}</Author>
-        <Message>{element.message}</Message>
+        {posts.map((post) => (
+            <div key={post.id}>
+                <Title>{post.title}</Title>
+                <Message>{post.message}</Message>
+                <Author>Publié par {post.Pseudo}</Author>
+            </div>
+        ))}
         
       </BlocPost>
     )
-  })}
-</div>
-
 };
 
 export default PostRead
