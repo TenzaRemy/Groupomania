@@ -1,59 +1,72 @@
-const bcrypt = require('bcrypt'); // Crypter les données
-const jwt = require('jsonwebtoken');
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
-const User = require('../models/user');// Importation du modele User
+import UserModal from "../models/user.js";
 
-// Créer un compte
-exports.signup = (req, res, next) => {
-  
-// Plus la valeur est élevée plus l'exécution de la fonction sera longue, plus ce sera sécurisé
-    bcrypt.hash(req.body.password, 10) 
-      .then(hash => {
-        const user = new User({ // Creation de l'user 
-          pseudo: req.body.pseudo,
-          email: req.body.email,
-          password: hash, 
-          isAdmin: false,
-        });
-        user.save() // User enregistré dans la base de donnée
-          .then(() => res.status(201).json({ message: 'Utilisateur crée !' }))
-          .catch(error => res.status(400).json({ error: 'Adresse Email déjà utilisée' }));
-      })
-      .catch(error => res.status(500).json({ error }));
-  };
+const secret = 'test';
 
-// Se connecter en disposant d'un TOKEN valide  
-  exports.login = (req, res, next) => {
-    User.findOne({ email: req.body.email }) // renvoie une Promise
-      .then(user => {
-        if (!user) {
-          return res.status(401).json({ error: 'Utilisateur non trouvé !' });
-        }
-        bcrypt.compare(req.body.password, user.password) // renvoie une Promise
-          .then(valid => {
-            if (!valid) {
-              return res.status(401).json({ error: 'Mot de passe incorrect !' });
-            }
-            res.status(200).json({
-              userId: user._id,
-              token: jwt.sign(
-                { userId: user._id },
-                'RANDOM_TOKEN_SECRET', // Création du TOKEN d'authentification pour sécurité
-                { expiresIn: '24h' }
-              ),
-              pseudo: user.pseudo,
-              email: user.email,
-            });
-          })
-          .catch(error => res.status(500).json({ error }));
-      })
-      .catch(error => res.status(500).json({ error }));
-  };
+export const signin = async (req, res) => {
+  const { email, password } = req.body;
+  console.log ( req.body ) ;
 
 
-exports.logout = (req, res, next) => {
-  res.clearCookie("jwt");
-  window.localStorage.clear()
-  res.redirect("/");
-  res.status(200).send('Utilisateur déconnecté');
-}
+  try {
+
+    const oldUser = await UserModal.findOne({ email });
+
+    if (!oldUser) { 
+      return res.status(404).json({ message: "L'utilisateur n'existe pas" });
+    }
+
+    const isPasswordCorrect = await bcrypt.compare(password, oldUser.password);
+
+
+    if (!isPasswordCorrect) return res.status(400).json({ message: "Données saisies incorrectes" });
+
+    const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, { expiresIn: "4h" });
+
+    res.status(200).json({ result: oldUser, token });
+  } catch (err) {
+
+    res.status(500).json({ message: "Something went wrong" });
+    console.log ( " mcg " ) ;
+
+  }
+};
+
+export const signup = async (req, res) => {
+  const { email, password, firstName, lastName , confirmPassword } = req.body;
+  console.log ( req.body ) ;
+
+  try {
+    console.log ( password ) ;
+    console.log ( confirmPassword ) ;
+
+
+    const oldUser = await UserModal.findOne({ email });
+
+    if (oldUser) {
+      return res.status(400).json({ message: "L'utilisateur existe déjà" });
+
+    }
+    if ( password !== confirmPassword ) {
+        console.log ( "here" ) ;
+      return res.status(400).json({ message: "Les mots de passes ne correspondent pas" });
+
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 12);
+
+    const result = await UserModal.create({ email, password: hashedPassword, name: `${firstName} ${lastName}` });
+
+    const token = jwt.sign( { email: result.email, id: result._id }, secret, { expiresIn: "4h" } );
+
+    res.status(201).json({ result, token });
+
+  } catch (error) {
+
+    res.status(500).json({ message: "Something went wrong" });
+    console.log(error);
+
+  }
+};
