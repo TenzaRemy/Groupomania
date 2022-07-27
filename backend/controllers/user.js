@@ -28,8 +28,7 @@ export const signin = async (req, res) => {
     res.status(200).json({ result: oldUser, token });
   } catch (err) {
 
-    res.status(500).json({ message: "Something went wrong" });
-    console.log ( " mcg " ) ;
+    res.status(500).json({ message: "erreur lors de la tentative de connexion" });
 
   }
 };
@@ -50,7 +49,7 @@ export const signup = async (req, res) => {
 
     }
     if ( password !== confirmPassword ) {
-        console.log ( "here" ) ;
+
       return res.status(400).json({ message: "Les mots de passes ne correspondent pas" });
 
     }
@@ -65,7 +64,7 @@ export const signup = async (req, res) => {
 
   } catch (error) {
 
-    res.status(500).json({ message: "Something went wrong" });
+    res.status(500).json({ message: "erreur lors de la tentative d'inscription" });
     console.log(error);
 
   }
