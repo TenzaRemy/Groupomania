@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core/';
+import { Card, CardActions, CardContent, CardMedia, Button } from '@material-ui/core/';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
@@ -23,21 +23,21 @@ const Post = ({ post, setCurrentId }) => {
 
       return post.likes.find((like) => like === ( user?.result?._id))
         ? (
-          <><ThumbUpIcon fontSize="small" />&nbsp;{post.likes.length > 2 ? `Toi et ${post.likes.length - 1} autres` : `${post.likes.length} J'aime${post.likes.length > 1 ? 's' : ''}` }</>
+          <><ThumbUpIcon fontSize="medium" />&nbsp;{post.likes.length > 2 ? `Toi et ${post.likes.length - 1} autres` : `${post.likes.length} J'aime${post.likes.length > 1 ? 's' : ''}` }</>
         ) : (
-          <><ThumbUpOutlined fontSize="small" />&nbsp;{post.likes.length} {post.likes.length === 1 ? "J'aime" : "J'aimes"}</>
+          <><ThumbUpOutlined fontSize="medium" />&nbsp;{post.likes.length} {post.likes.length === 1 ? "J'aime" : "J'aimes"}</>
         );
     }
 
-    return <><ThumbUpOutlined fontSize="small" />&nbsp;J'aime</>;
+    return <><ThumbUpOutlined fontSize="medium" />&nbsp;J'aime</>;
   };
 
   return (
     <Card className={classes.card} raised>
       <CardMedia className={classes.media} image={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} title={post.title} />
       <div className={classes.overlay}>
-        <Typography variant="h6">{post.creator}</Typography>
-        <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
+        <h3>{post.creator}</h3>
+        <h4>{moment(post.createdAt).fromNow()}</h4>
       </div>
       {(user?.result?._id === post?.Cid) && (
       <div className={classes.overlay2}>
@@ -46,17 +46,17 @@ const Post = ({ post, setCurrentId }) => {
         </Button>
       </div>
       )}
-      <Typography className={classes.title} gutterBottom variant="h5" component="h2">{post.title}</Typography>
+      <h2 className={classes.title}>{post.title}</h2>
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">{post.message}</Typography>
+        <h4 className={classes.message}>{post.message}</h4>
       </CardContent>
       <CardActions className={classes.cardActions}>
         <Button size="medium" color="primary" disabled={!user?.result} onClick={() => dispatch(likePost(post._id , user ))}>
           <Likes />
         </Button>
         {( user?.result?._id === post?.Cid ) && (
-        <Button size="medium" color="secondary" onClick={() => dispatch(deletePost(post._id))}>
-          <DeleteIcon fontSize="medium" /> Supprimer
+        <Button size="large" color="secondary" onClick={() => dispatch(deletePost(post._id))}>
+          <DeleteIcon fontSize="large" />
         </Button>
         )}
       </CardActions>

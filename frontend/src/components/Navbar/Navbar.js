@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AppBar, Typography, Toolbar, Button } from '@material-ui/core';
+import { AppBar, Toolbar, Button } from '@material-ui/core';
 import { useNavigate , useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
@@ -44,7 +44,7 @@ const Navbar = () => {
         {user?.result ? (
           <div className={classes.profile}>
             <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>Se Déconnecter</Button>
-            <Typography className={classes.userName} variant="h6">{user?.result.name}</Typography>
+            <h2 className={classes.userName}>{user?.result.name}</h2>
           </div>
         ) : (
            <Button className={classes.logout} variant="contained" color="secondary" onClick = { handleClick } >Se Connecter</Button>

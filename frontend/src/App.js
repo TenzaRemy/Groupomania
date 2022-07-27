@@ -10,7 +10,7 @@ import Auth from './components/Auth/Auth';
 
 const App = () => (
   <BrowserRouter>
-    <Container maxWidth="lg">
+    <Container>
       <Navbar />
       <Routes>
         <Route path="*" element={<Error/>}/>

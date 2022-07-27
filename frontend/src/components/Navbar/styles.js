@@ -35,6 +35,8 @@ export default makeStyles((theme) => ({
   },
   logout: {
     backgroundColor: '#FD2D01',
-    margin: '10px',
+    margin: '10px 30px',
+    color: '#FFD7D7',
+    padding: '10px',
   },
 }));

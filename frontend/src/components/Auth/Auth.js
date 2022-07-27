@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Button, Paper, Grid, Typography, Container } from '@material-ui/core';
+import { Button, Paper, Grid, Container } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
 
 import { signin, signup } from '../../actions/auth';
@@ -40,7 +40,7 @@ const SignUp = () => {
   return (
     <Container component="main" maxWidth="xs">
       <Paper className={classes.paper} elevation={3}>
-        <Typography component="h1" variant="h5">{ isSignup ? "S'inscrire" : 'Se Connecter' }</Typography>
+        <h2>{ isSignup ? "S'inscrire" : 'Se Connecter' }</h2>
         <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             { isSignup && (
@@ -56,9 +56,9 @@ const SignUp = () => {
           <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
             { isSignup ? "S'inscrire" : 'Se Connecter' }
           </Button>
-          <Grid container justify="flex-end">
+          <Grid container justifyContent="flex-end">
             <Grid item>
-              <Button onClick={switchMode}>
+              <Button  onClick={switchMode}>
                 { isSignup ? "Déjà un compte ? Connectez vous" : "Pas de compte ? Inscrivez-vous" }
               </Button>
             </Grid>

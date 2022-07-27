@@ -24,25 +24,28 @@ export default makeStyles({
   },
   overlay: {
     position: 'absolute',
-    top: '10px',
     left: '20px',
-    color: 'white',
+    color: '#FFD7D7',
   },
   overlay2: {
     position: 'absolute',
     top: '10px',
     right: '0px',
-    color: 'white',
+    color: '#FFD7D7',
   },
   grid: {
     display: 'flex',
   },
   title: {
-    padding: '10px 16px',
+    padding: '0 10px',
+    margin: '10px 0',
   },
   cardActions: {
     padding: '0 16px 8px 16px',
     display: 'flex',
     justifyContent: 'space-between',
   },
+  message: {
+    margin: 0,
+  }
 });

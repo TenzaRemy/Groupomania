@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Typography, Paper } from '@material-ui/core';
+import { TextField, Button, Paper } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import FileBase from 'react-file-base64';
 
@@ -36,9 +36,9 @@ import useStyles from './styles';
   if(!user?.result?.name) {
     return(
         <Paper className={classes.paper}>
-            <Typography variant="h6" align="center">
+            <h3 align="center">
                 Veuillez d'abord vous connecter avant de pouvoir publier ce que vous souhaitez. Merci !
-            </Typography>
+            </h3>
         </Paper>
     )
 }
@@ -46,9 +46,9 @@ import useStyles from './styles';
   return (
     <Paper className={classes.paper}>
       <form autoComplete="off"  className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-        <Typography variant="h6">{currentId ? `Modifer "${post.title}"` : 'Créer votre Publication'}</Typography>
+        <h2 >{currentId ? `Modifer "${post.title}"` : 'Créer votre Publication'}</h2>
         <TextField name="title" label="Titre" variant="outlined"  fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} required />
-        <TextField name="message" variant="outlined" label="Message" fullWidth multiline rows={4} value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })} required />
+        <TextField name="message" variant="outlined" label="Message (160 Caractères max...)" fullWidth multiline rows={4} value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })} required />
         <div className={classes.fileInput}><FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })} /></div>
         <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Publier</Button>
         <Button className={classes.buttonClear} variant="contained"  size="small" onClick={clear} fullWidth>Annuler</Button>
