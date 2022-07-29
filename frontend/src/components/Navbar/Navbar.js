@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AppBar, Toolbar, Button } from '@material-ui/core';
+import SecurityIcon from '@material-ui/icons/Security';
 import { useNavigate , useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
@@ -38,9 +39,11 @@ const Navbar = () => {
 
     <AppBar className={classes.appBar} position="static" color="inherit">
       <div className={classes.brandContainer}>
-        <img className={classes.image} src={logo} alt="icon" height="60" />
+        <img className={classes.image} src={logo} alt="logo Entreprise Groupomania" height="60" />
       </div>
-      <Toolbar className={classes.toolbar}>
+      <Toolbar className={classes.toolbar}>{( user?.result?.isAdmin) && (
+        <SecurityIcon fontSize="large" />
+         )}
         {user?.result ? (
           <div className={classes.profile}>
             <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>Se Déconnecter</Button>

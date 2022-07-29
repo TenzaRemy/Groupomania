@@ -23,7 +23,7 @@ const Post = ({ post, setCurrentId }) => {
 
       return post.likes.find((like) => like === ( user?.result?._id))
         ? (
-          <><ThumbUpIcon fontSize="medium" />&nbsp;{post.likes.length > 2 ? `Toi et ${post.likes.length - 1} autres` : `${post.likes.length} J'aime${post.likes.length > 1 ? 's' : ''}` }</>
+          <><ThumbUpIcon fontSize="medium" />&nbsp;{post.likes.length >= 2 ? `Vous et ${post.likes.length - 1} autres` : `${post.likes.length} J'aime${post.likes.length > 1 ? 's' : ''}` }</>
         ) : (
           <><ThumbUpOutlined fontSize="medium" />&nbsp;{post.likes.length} {post.likes.length === 1 ? "J'aime" : "J'aimes"}</>
         );
@@ -39,7 +39,7 @@ const Post = ({ post, setCurrentId }) => {
         <h3>{post.creator}</h3>
         <h4>{moment(post.createdAt).fromNow()}</h4>
       </div>
-      {(user?.result?._id === post?.Cid) && (
+      {(user?.result?._id === post?.Cid || user?.result?.isAdmin) && (
       <div className={classes.overlay2}>
         <Button onClick={() => setCurrentId(post._id)} style={{ color: 'white' }} size="small">
           <MoreHorizIcon fontSize="medium" />
@@ -54,7 +54,7 @@ const Post = ({ post, setCurrentId }) => {
         <Button size="medium" color="primary" disabled={!user?.result} onClick={() => dispatch(likePost(post._id , user ))}>
           <Likes />
         </Button>
-        {( user?.result?._id === post?.Cid ) && (
+        {( user?.result?._id === post?.Cid || user?.result?.isAdmin) && (
         <Button size="large" color="secondary" onClick={() => dispatch(deletePost(post._id))}>
           <DeleteIcon fontSize="large" />
         </Button>

@@ -10,6 +10,9 @@ export default makeStyles((theme) => ({
     padding: '10px 10px',
     backgroundColor: '#4E5166',
   },
+  image: {
+    width: '250px',
+  },
   heading: {
     color: 'rgba(0,183,255, 1)',
     textDecoration: 'none',
@@ -17,12 +20,10 @@ export default makeStyles((theme) => ({
   toolbar: {
     display: 'flex',
     justifyContent: 'flex-end',
-    width: '400px',
   },
   profile: {
     display: 'flex',
     justifyContent: 'space-between',
-    width: '400px',
   },
   userName: {
     display: 'flex',
@@ -35,8 +36,8 @@ export default makeStyles((theme) => ({
   },
   logout: {
     backgroundColor: '#FD2D01',
-    margin: '10px 30px',
+    margin: '10px 75px',
     color: '#FFD7D7',
-    padding: '10px',
+    padding: '5px',
   },
 }));

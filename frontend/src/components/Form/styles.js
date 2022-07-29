@@ -34,7 +34,4 @@ export default makeStyles((theme) => ({
     width: '70%',
     borderRadius: 25,
   },
-  image: {
-    color: '#4E5166',
-  }
 }));
