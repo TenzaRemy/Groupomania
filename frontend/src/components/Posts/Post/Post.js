@@ -1,8 +1,8 @@
 import React from 'react';
-import { Card, CardActions, CardContent, CardMedia, Button } from '@material-ui/core/';
+import { Card, CardActions, CardMedia, Button } from '@material-ui/core/';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import DeleteIcon from '@material-ui/icons/Delete';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import EditIcon from '@material-ui/icons/Edit';
 import ThumbUpOutlined from '@material-ui/icons/ThumbUpOutlined';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
@@ -42,14 +42,12 @@ const Post = ({ post, setCurrentId }) => {
       {(user?.result?._id === post?.Cid || user?.result?.isAdmin) && (
       <div className={classes.overlay2}>
         <Button onClick={() => setCurrentId(post._id)} style={{ color: 'white' }} size="small">
-          <MoreHorizIcon fontSize="medium" />
+          <EditIcon fontSize="medium" />
         </Button>
       </div>
       )}
       <h2 className={classes.title}>{post.title}</h2>
-      <CardContent>
         <h4 className={classes.message}>{post.message}</h4>
-      </CardContent>
       <CardActions className={classes.cardActions}>
         <Button size="medium" color="primary" disabled={!user?.result} onClick={() => dispatch(likePost(post._id , user ))}>
           <Likes />

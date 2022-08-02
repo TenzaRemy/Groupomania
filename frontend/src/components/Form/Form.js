@@ -48,7 +48,7 @@ import useStyles from './styles';
       <form autoComplete="off"  className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
         <h2 >{currentId ? `Modifer "${post.title}"` : 'Créer votre Publication'}</h2>
         <TextField name="title" label="Titre" variant="outlined"  fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} required />
-        <TextField name="message" variant="outlined" label="Message (160 Caractères max...)" fullWidth multiline rows={4} value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })} required />
+        <TextField name="message" variant="outlined" label="Message (160 Caractères max)" fullWidth multiline rows={4} value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })} required />
         <div className={classes.fileInput}><FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })} /></div>
         <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Publier</Button>
         <Button className={classes.buttonClear} variant="contained"  size="small" onClick={clear} fullWidth>Annuler</Button>

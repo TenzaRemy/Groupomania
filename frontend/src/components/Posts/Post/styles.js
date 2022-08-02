@@ -46,6 +46,7 @@ export default makeStyles({
     justifyContent: 'space-between',
   },
   message: {
+    padding: '10px',
     margin: 0,
   }
 });
