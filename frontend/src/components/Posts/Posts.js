@@ -10,13 +10,13 @@ const Posts = ({ setCurrentId }) => {
   const classes = useStyles();
 
   return (
-    !posts.length ?<CircularProgress /> : (
+    !posts.length ?<CircularProgress color="secondary" /> : (
       <Grid className={classes.container} container alignItems="stretch" spacing={3}>
         {posts.slice(0,5).map((post) => (
           <Grid key={post._id} item xs={12} sm={6} md={6}>
             <Post post={post} setCurrentId={setCurrentId} />
           </Grid>
-        )).reverse()}
+        ))}
       </Grid>
     )
   );

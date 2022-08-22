@@ -26,7 +26,7 @@ import useStyles from './styles';
     e.preventDefault();
 
     if (currentId === 0) {
-      dispatch(createPost({ ...postData, Cname: user?.result?.name , Cid : user?.result?._id , creator : user?.result?.name }));
+      dispatch(createPost({ ...postData, cName: user?.result?.name , cId : user?.result?._id , creator : user?.result?.name }));
     } else {
       dispatch(updatePost( postData ));
     }

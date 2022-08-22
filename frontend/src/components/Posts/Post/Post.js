@@ -39,7 +39,7 @@ const Post = ({ post, setCurrentId }) => {
         <h3>{post.creator}</h3>
         <h4>{moment(post.createdAt).fromNow()}</h4>
       </div>
-      {(user?.result?._id === post?.Cid || user?.result?.isAdmin) && (
+      {(user?.result?._id === post?.cId || user?.result?.isAdmin) && (
       <div className={classes.overlay2}>
         <Button onClick={() => setCurrentId(post._id)} style={{ color: 'white' }} size="small">
           <EditIcon fontSize="medium" />
@@ -52,7 +52,7 @@ const Post = ({ post, setCurrentId }) => {
         <Button size="medium" color="primary" disabled={!user?.result} onClick={() => dispatch(likePost(post._id , user ))}>
           <Likes />
         </Button>
-        {( user?.result?._id === post?.Cid || user?.result?.isAdmin) && (
+        {( user?.result?._id === post?.cId || user?.result?.isAdmin) && (
         <Button size="large" color="secondary" onClick={() => dispatch(deletePost(post._id))}>
           <DeleteIcon fontSize="large" />
         </Button>
