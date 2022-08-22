@@ -4,9 +4,9 @@ const postSchema = mongoose.Schema({
     title: String,
     message: { type: String, maxLength: 160 },
     selectedFile: String,
-    Cname : String ,
+    cName : String ,
     creator : String ,
-    Cid : String ,
+    cId : String ,
     likes: { type: [String], default: [] },
     createdAt: {
         type: Date,
