@@ -35,10 +35,10 @@ import useStyles from './styles';
 
   if(!user?.result?.name) {
     return(
-        <Paper className={classes.paper}>
-            <h3 align="center">
-                Veuillez d'abord vous connecter avant de pouvoir publier ce que vous souhaitez. Merci !
-            </h3>
+        <Paper className={classes.paperAuth}>
+            <h2 align="center">
+                Veuillez d'abord vous connecter avant d'avoir accès au contenu et de publier ce que vous souhaitez.
+            </h2>
         </Paper>
     )
 }

@@ -13,6 +13,15 @@ export default makeStyles((theme) => ({
     borderRadius: 15,
     width: '90%',
   },
+  paperAuth: {
+    position: 'absolute',
+    top: '30%',
+    left: '4.5%',
+    padding: '5px',
+    backgroundColor: '#ffd7d7',
+    borderRadius: 15,
+    width: '90%',
+  },
   form: {
     display: 'flex',
     flexWrap: 'wrap',
