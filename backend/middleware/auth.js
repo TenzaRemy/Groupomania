@@ -6,23 +6,15 @@ const secret = process.env.TOKEN;
 
 const auth = async (req, res, next) => {
   try {
-    const token = req.headers.authorization.split(" ")[1];
-
-    let decodedData;
-
-    if (token ) {      
-      decodedData = jwt.verify(token, secret);
-
-      req.userId = decodedData?.id;
+    const token = req.headers.authorization.split(' ')[1];  
+    const decodedToken = jwt.verify(token, secret); 
+    const userId = decodedToken.userId;
+    if (req.body.userId && req.body.userId !== userId) {
+        throw new Error('Utilisateur non autorisé');
     } else {
-      decodedData = jwt.decode(token);
-
-      req.userId = decodedData?.sub;
-    }    
-
-    next();
-  } catch (error) {
-    console.log(error);
+      next();
+    }
+  } catch {res.status(401).json({error: new Error('Invalid request!')});
   }
 };
 
